@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      generator: ''
+    }
+  }
   render() {
+    var klik = () =>{
+      var nama = this.refs.isi.value
+      var url = `https://robohash.org/${nama}`
+
+      this.setState({
+        generator: url
+      })
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      
+      <div className="mr-md-3">
+        <center>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <input type="text" ref="isi" placeholder="Ketik nama anda"></input><br/><br/>
+                <button onClick={klik} class="btn btn-success">Buat Profile Picture!</button><br/><br/>
+                <img src={this.state.generator}></img>
+              </div>
+            </div>
+          </div>
+        
+        </center>
       </div>
     );
   }
